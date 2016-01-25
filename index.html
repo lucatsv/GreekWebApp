@@ -11,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="js/menuControl.js"></script>
+  <script src="js/formValidation.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -179,21 +180,33 @@
   </div>
   
   <div id="contactus">
-    <div class="container-fluid">
-        <div class="jumbotron white">
-            <h1>Contact Us</h1> 
-            <div class="row">
-                <div class="col-md-4 border">.col-md-1</div>
-                <div class="col-md-4 border">.col-md-1</div>
-                <div class="col-md-4 border">.col-md-1</div>
-            </div>    
-            <div class="row">
-                <div class="col-md-4 border">.col-md-1</div>
-                <div class="col-md-4 border">.col-md-1</div>
-                <div class="col-md-4 border">.col-md-1</div>
-            </div>
-        </div>
-    </div>
+      <div class="container-fluid">
+          <div class="jumbotron white">
+                <h1>Contact Us</h1> 
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form name="contactform" method="post" action="send_form_email.php">
+                            <input id="name" type="text" name="name" maxlength="50" size="30" placeholder="Name"><br/><br/>
+                            <input id="email" type="email" name="email" required placeholder="Email"/><br/><br/>
+                            <textarea id="comments" name="comments" maxlength="1000" cols="25" rows="6" placeholder="comments"></textarea><br/>
+                            <input type="submit" value="ok">
+                        </form>
+                    </div> 
+                    <div class="col-lg-6">
+                    <h3>connect with us on...</h3><br/><br/>
+                    <div class ="row">
+                        <div class="col-lg-4">
+                            <a href="#"><img src="img/logo/facebook.jpeg" alt="Facebook"></a>
+                        </div>    
+                        <div class="col-lg-4">
+                            <a href="#"><img src="img/logo/instagram.jpeg" alt="Instagram"></a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="#"><img src="img/logo/twitter.png" alt="Twitter"></a>
+                        </div>                  
+                    </div>
+                </div>
+         </div>
   </div>
   <!-- modals -->
   <div id="login" class="modal fade modal-width-25" role="dialog">
@@ -251,15 +264,71 @@
                <h2 class="modal-title">sign up</h2>    
             </div>
             <div class="modal-body">
-                <form tag="signup">
-                    <p>Username *: <input type="username" name="username" /></p>
-                    <p>First Name *: <input type="fname" name="fname" /></p>
-                    <p>Last Name *: <input type="lname" name="lname" /></p>
-                    <p>Password *: <input type="password" name="pwd" /></p>
-                    <p>Email *: <input type="email" name="email" /></p>
-                    <p>Telephone: <input type="telephone" name="tel" /></p>
-                    <p>Address *: <input type="address" name="add" /></p>
-                    <p>Post Code *: <input type="postcode" name="ptc" /></p>
+                <form tag="signup" onclick="return validateForm()">
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="username" type="username" name="username" required placeholder="Username"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_username" class="error"></p>
+                      </div>
+                    </div><br/>
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="fname" type="fname" name="fname" required placeholder="First Name"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_fname" class="error"></p>
+                      </div>
+                    </div><br/>                    
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="lname" type="lname" name="lname" required placeholder="Last Name"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_lname" class="error"></p>
+                      </div>
+                    </div><br/>                         
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="password" type="password" name="pwd" required placeholder="Password"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_password" class="error"></p>
+                      </div>
+                    </div><br/>                        
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="email" type="email" name="email" required placeholder="Email"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_email" class="error"></p>
+                      </div>
+                    </div><br/>                        
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="tel" type="tel" name="tel" required placeholder="Telephone"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_tel" class="error"></p>
+                      </div>
+                    </div><br/>                        
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="address" type="address" name="add" required placeholder="Address"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_address" class="error"></p>
+                      </div>
+                    </div><br/>                
+                    <div class="row">
+                      <div class="col-xs-6">
+                          <input id="postcode" type="postcode" name="ptc" required placeholder="Post Code"/>
+                      </div>
+                      <div class="col-xs-6">
+                          <p id="error_postcode" class="error"></p>
+                      </div>
+                    </div><br/>                
                     <input type="submit" value="ok">
                 </form>  
             </div>

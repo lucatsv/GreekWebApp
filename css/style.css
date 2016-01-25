@@ -13,3 +13,7 @@ body {
 .border {
     margin-bottom: 2%;
 }
+
+.error {
+    color: red;
+}
