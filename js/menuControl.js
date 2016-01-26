@@ -6,7 +6,6 @@ $(document).ready(function(){
     $("#contactus").hide(); 
     $("#home").show();
     
-    
     $("#mlunch").click(function(){
         $("#lunch").show();
         $("#dinner").hide();
@@ -47,7 +46,8 @@ $(document).ready(function(){
         $("#aboutus").hide();
         $("#contactus").hide(); 
         $("#home").show();
-    });   
+    });
+       
 });
 
 

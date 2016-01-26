@@ -17,3 +17,7 @@ body {
 .error {
     color: red;
 }
+
+.left{
+    text-align: left;
+}

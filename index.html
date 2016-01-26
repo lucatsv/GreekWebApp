@@ -44,9 +44,9 @@
                 <li id="maboutus"><a href="#">about us</a></li>
                 <li id="mcontactus"><a href="#">contact us</a></li>
             </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-toggle="modal" data-target="#login">log in <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-            
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#" data-toggle="modal" data-target="#login">log in <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
             </li>
         </ul>
         </div>
@@ -193,148 +193,123 @@
                         </form>
                     </div> 
                     <div class="col-lg-6">
-                    <h3>connect with us on...</h3><br/><br/>
-                    <div class ="row">
-                        <div class="col-lg-4">
-                            <a href="#"><img src="img/logo/facebook.jpeg" alt="Facebook"></a>
-                        </div>    
-                        <div class="col-lg-4">
-                            <a href="#"><img src="img/logo/instagram.jpeg" alt="Instagram"></a>
+                        <h3>connect with us on...</h3><br/><br/>
+                        <div class ="row">
+                            <div class="col-lg-4">
+                                <a href="#"><img src="img/logo/facebook.jpeg" alt="Facebook"></a>
+                            </div>    
+                            <div class="col-lg-4">
+                                <a href="#"><img src="img/logo/instagram.jpeg" alt="Instagram"></a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="#"><img src="img/logo/twitter.png" alt="Twitter"></a>
+                            </div>                  
                         </div>
-                        <div class="col-lg-4">
-                            <a href="#"><img src="img/logo/twitter.png" alt="Twitter"></a>
-                        </div>                  
                     </div>
                 </div>
-         </div>
-  </div>
-  <!-- modals -->
-  <div id="login" class="modal fade modal-width-25" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">log in</h2>
-                <a href="#" data-toggle="modal" data-target="#signup">sign up</a>
-            </div>    
-            <div class="modal-body">
-                <form>
-                    <p><input type="text" name="login" value="" placeholder="Username"></p>
-                    <p><input type="password" name="password" value="" placeholder="Password"></p>
-                    <input type="submit" value="ok">
-                </form>  
             </div>
-        <div class="modal-footer">
-            
-        </div>    
-     </div>
-  </div>
-</div>
-
-  
-  <div id="login" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2 class="modal-title">log in</h2>
-                    </div>
-                <div class="col-lg-6">
-                    <a href="#" data-toggle="modal" data-target="#login">sign up</a>
+        </div>          
+    </div>
+  <!-- login modal -->
+    <div id="login" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <h2 class="modal-title left">log in</h2>
+                    <a href="#" data-toggle="modal" data-target="#signup">sign up</a>
+                </div>    
+                <div class="modal-body">
+                    <form>
+                        <p><input type="text" name="login" placeholder="Username"></p>
+                        <p><input type="password" name="password" placeholder="Password"></p>
+                    </form>  
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="ok">
                 </div>    
             </div>
-      </div>    
-      <div class="modal-body">
-            <form>
-                <p><input type="text" name="login" value="" placeholder="Username"></p>
-                <p><input type="password" name="password" value="" placeholder="Password"></p>
-            </form>  
         </div>
-        <div class="modal-footer">
-            <input type="submit" value="ok">
-        </div>    
-     </div>
-  </div>
-</div>
-
-  <div id="signup" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-               <h2 class="modal-title">sign up</h2>    
-            </div>
-            <div class="modal-body">
-                <form tag="signup" onclick="return validateForm()">
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="username" type="username" name="username" required placeholder="Username"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_username" class="error"></p>
-                      </div>
-                    </div><br/>
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="fname" type="fname" name="fname" required placeholder="First Name"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_fname" class="error"></p>
-                      </div>
-                    </div><br/>                    
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="lname" type="lname" name="lname" required placeholder="Last Name"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_lname" class="error"></p>
-                      </div>
-                    </div><br/>                         
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="password" type="password" name="pwd" required placeholder="Password"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_password" class="error"></p>
-                      </div>
-                    </div><br/>                        
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="email" type="email" name="email" required placeholder="Email"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_email" class="error"></p>
-                      </div>
-                    </div><br/>                        
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="tel" type="tel" name="tel" required placeholder="Telephone"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_tel" class="error"></p>
-                      </div>
-                    </div><br/>                        
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="address" type="address" name="add" required placeholder="Address"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_address" class="error"></p>
-                      </div>
-                    </div><br/>                
-                    <div class="row">
-                      <div class="col-xs-6">
-                          <input id="postcode" type="postcode" name="ptc" required placeholder="Post Code"/>
-                      </div>
-                      <div class="col-xs-6">
-                          <p id="error_postcode" class="error"></p>
-                      </div>
-                    </div><br/>                
-                    <input type="submit" value="ok">
-                </form>  
-            </div>
-         </div>
-     </div>
     </div>
-  
+    <!-- signup modal -->
+    <div id="signup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">×</button>
+                    <h2 class="modal-title">sign up</h2>    
+                </div>
+                <div class="modal-body">
+                    <form tag="signup" onclick="return validateForm()">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="username" type="username" name="username" required placeholder="Username"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_username" class="error"></p>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="fname" type="fname" name="fname" required placeholder="First Name"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_fname" class="error"></p>
+                            </div>
+                        </div><br/>                    
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="lname" type="lname" name="lname" required placeholder="Last Name"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_lname" class="error"></p>
+                            </div>
+                        </div><br/>                         
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="password" type="password" name="pwd" required placeholder="Password"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_password" class="error"></p>
+                            </div>
+                        </div><br/>                        
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="email" type="email" name="email" required placeholder="Email"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_email" class="error"></p>
+                            </div>
+                        </div><br/>                        
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="tel" type="tel" name="tel" required placeholder="Telephone"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_tel" class="error"></p>
+                            </div>
+                        </div><br/>                        
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="address" type="address" name="add" required placeholder="Address"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_address" class="error"></p>
+                            </div>
+                        </div><br/>                
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input id="postcode" type="postcode" name="ptc" required placeholder="Post Code"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <p id="error_postcode" class="error"></p>
+                            </div>
+                        </div><br/>                
+                        <input type="submit" value="ok">
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
