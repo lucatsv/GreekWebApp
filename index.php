@@ -11,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="js/menuControl.js"></script>
+  <script src="js/login.js"></script> 
   <script src="js/formValidation.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
@@ -46,7 +47,14 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#" data-toggle="modal" data-target="#login">log in <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                <a href="#" data-toggle="modal" data-target="#login" id="loginuser">
+                <?php  
+                if(session_status() == PHP_SESSION_ACTIVE)
+                    echo $_SESSION["firstname"] . " " . $_SESSION["lastname"];
+                else
+                    echo "log in";    
+                ?>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
             </li>
         </ul>
         </div>
@@ -295,13 +303,13 @@
                     <a href="#" data-toggle="modal" data-target="#signup">sign up</a>
                 </div>    
                 <div class="modal-body">
-                    <form>
-                        <p><input type="text" name="login" placeholder="Username"></p>
+                    <form id="loginForm">
+                        <p><input type="text" name="username" placeholder="Username"></p>
                         <p><input type="password" name="password" placeholder="Password"></p>
                     </form>  
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="ok">
+                    <input id="loginBtn" type="submit" value="ok">
                 </div>    
             </div>
         </div>
@@ -380,9 +388,58 @@
                                 <p id="error_postcode" class="error"></p>
                             </div>
                         </div><br/>                
-                        <input type="submit" value="ok">
+                        <input id="submitBtn" type="submit" value="ok">
                     </form>  
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="userinfo" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p id="userinfoName">
+                        <?php  
+                            session_start();
+                            echo $_SESSION["firstname"] . " " . $_SESSION["lastname"];
+                        ?>  
+                    </p>
+                    <a href="#" id="logout">log out</a>
+                </div>    
+                <div class="modal-body">
+                    <form id="userinfoForm" name="userinfoForm" method="post" action="send_form_email.php">
+                        First Name: <input name="firstname" id="userinfoFname" type="text" maxlength="50" size="30" 
+                        value= "<?php echo $_SESSION["firstname"] ?>" disabled><br/><br/>
+                        
+                        Last Name: <input name="lastname" id="userinfoLname" type="text" maxlength="50" size="30"
+                        value= "<?php echo $_SESSION["lastname"] ?>" disabled><br/><br/>
+                        
+                        Email: <input name="email" id="userinfoEmail" type="email" maxlength="50" size="30"
+                        value= "<?php echo $_SESSION["email"] ?>"><br/><br/>
+                        
+                        Address: <input name="address" id="userinfoAddress" type="text" maxlength="50" size="30"
+                        value= "<?php echo $_SESSION["address"] ?>"><br/><br/>
+                        
+                        Province: <input name="province" id="userinfoProvince" type="text" maxlength="50" size="6"
+                        value= "<?php echo $_SESSION["province"] ?>">
+                        
+                        Zip Code: <input name="zipcode" id="userinfoZipcode" type="text" maxlength="50" size="6"
+                        value= "<?php echo $_SESSION["zipcode"] ?>"><br/><br/>
+                        
+                        Phone: <input name="phonenumber" id="userinfoPhone" type="text" maxlength="50" size="10"
+                        value= "<?php echo $_SESSION["phonenumber"] ?>"><br/><br/>
+                        
+                        City: <input name="city" id="userinfoCity" type="text" maxlength="50" size="10"
+                        value= "<?php echo $_SESSION["city"] ?>"><br/><br/>
+                        
+                        Password: <input name="password" id="userinfoPwd" type="password" maxlength="50" size="30"
+                        value= "<?php echo $_SESSION["password"] ?>"><br/><br/>
+                    </form>
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    <input id="updateBtn" type="submit" value="update">
+                </div>    
             </div>
         </div>
     </div>

@@ -19,7 +19,5 @@ function validateForm() {
        $('#error_password').html("");
     else
         $('#error_password').html("Password should have at least 6 characters and no more than 15. It should includes special character.");    
-    
-        
 }
 
