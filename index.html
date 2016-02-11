@@ -33,29 +33,25 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li id="mhome"><a href="#">home</a></li>
+            <ul id = "menuoptions" class="nav navbar-nav">
+                <li id="mhome" name="mhome"><a href="#">home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">menu <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li id="mlunch"><a href="#">lunch</a></li>
-                            <li id="mdinner"><a href="#">dinner</a></li>
+                            <li id="mlunch" name="mlunch"><a href="#">lunch</a></li>
+                            <li id="mdinner" name="mdinner"><a href="#">dinner</a></li>
                         </ul>
                 </li>
-                <li id="maboutus"><a href="#">about us</a></li>
-                <li id="mcontactus"><a href="#">contact us</a></li>
+                <li id="maboutus" name="maboutus"><a href="#">about us</a></li>
+                <li id="mcontactus" name="mcontactus"><a href="#">contact us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#" data-toggle="modal" data-target="#login" id="loginuser">
-                <?php  
-                if(session_status() == PHP_SESSION_ACTIVE)
-                    echo $_SESSION["firstname"] . " " . $_SESSION["lastname"];
-                else
-                    echo "log in";    
-                ?>
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                <a href="#" data-toggle="modal" data-target="#login" id="loginuser">log in    
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
             </li>
+            <li name="mshopping-cart" id="mshopping-cart"></li>
         </ul>
         </div>
     </div>
@@ -63,10 +59,10 @@
   
   <div id="home">
     <div class="container-fluid">
-        <div class="jumbotron white">
+        <div class="jumbotron white text-center">
             <h1 id="mhome">Meet our specialities</h1> 
             <div class="row">
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/spanakopita-150x150.jpg"><br/>Spanakopita
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#spanakopita"><img src="img/img-dishes/lunch/spanakopita-150x150.jpg"></a><br/>Spanakopita
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -76,7 +72,7 @@
                         Buy
                     </div>
                 </div>
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/turkey-pita-150x150.jpg"><br/>Turkey Pita
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#turkey"><img src="img/img-dishes/lunch/turkey-pita-150x150.jpg"></a><br/>Turkey Pita
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -86,7 +82,7 @@
                         Buy
                     </div>
                 </div>
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/gyros-150x150.jpg"><br/>Gyros
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#gyros"><img src="img/img-dishes/dinner/gyros-150x150.jpg"></a><br/>Gyros
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -98,7 +94,7 @@
                 </div>
             </div>    
             <div class="row">
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/souvlaki-150x150.jpg"><br/>Souvlaki
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#souvlaki"><img src="img/img-dishes/dinner/souvlaki-150x150.jpg"></a><br/>Souvlaki
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -108,7 +104,7 @@
                         Buy
                     </div>
                 </div>
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/pastitsio-150x150.jpg"><br/>Pastitsio
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#pastitsio"><img src="img/img-dishes/dinner/pastitsio-150x150.jpg"></a><br/>Pastitsio
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -118,7 +114,7 @@
                         Buy
                     </div>
                 </div>
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/fish-150x150.jpg"><br/>Fish
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#fish"><img src="img/img-dishes/lunch/fish-150x150.jpg"></a><br/>Fish
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -135,10 +131,10 @@
 
   <div id="lunch">
     <div class="container-fluid">
-        <div class="jumbotron white">
+        <div class="jumbotron white text-center">
             <h1>Lunch</h1> 
             <div class="row">
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/spanakopita-150x150.jpg"><br/>Spanakopita
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#spanakopita"><img src="img/img-dishes/lunch/spanakopita-150x150.jpg"></a><br/>Spanakopita
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -149,7 +145,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/fish-150x150.jpg"><br/>Fish
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#fish"><img src="img/img-dishes/lunch/fish-150x150.jpg"></a><br/>Fish
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -160,7 +156,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/lunch/turkey-pita-150x150.jpg"><br/>Turkey Pita
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#turkey"><img src="img/img-dishes/lunch/turkey-pita-150x150.jpg"></a><br/>Turkey Pita
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -183,10 +179,10 @@
 
   <div id="dinner">
     <div class="container-fluid">
-        <div class="jumbotron white">
+        <div class="jumbotron white text-center">
             <h1>Dinner</h1> 
             <div class="row">
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/gyros-150x150.jpg"><br/>Gyros
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#gyros"><img src="img/img-dishes/dinner/gyros-150x150.jpg"></a><br/>Gyros
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -197,7 +193,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/souvlaki-150x150.jpg"><br/>Souvlaki
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#souvlaki"><img src="img/img-dishes/dinner/souvlaki-150x150.jpg"></a><br/>Souvlaki
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -208,7 +204,7 @@
                     </div>
                 </div>
             
-                <div class="col-md-4 hidden-xs border"><img src="img/img-dishes/dinner/pastitsio-150x150.jpg"><br/>Pastitsio
+                <div class="col-md-4 hidden-xs border"><a href="#" data-toggle="modal" data-target="#pastitsio"><img src="img/img-dishes/dinner/pastitsio-150x150.jpg"></a><br/>Pastitsio
                     <div class="btn btn-info btn-sm">
                         Buy
                     </div>
@@ -226,11 +222,12 @@
             </div>
         </div>
     </div>
-  </div>         
+  </div>
+  
   
   <div id="aboutus">
     <div class="container-fluid">
-        <div class="jumbotron white">
+        <div class="jumbotron white text-center">
             <h1>About Us</h1> 
 
                 <div class="row">
@@ -293,6 +290,13 @@
             </div>
         </div>          
     </div>
+    <div id="shopping-cart">
+      <div class="container-fluid">
+          <div class="jumbotron white">
+                <h1>Shopping cart...</h1> 
+            </div>
+        </div>          
+    </div>
   <!-- login modal -->
     <div id="login" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -306,7 +310,8 @@
                     <form id="loginForm">
                         <p><input type="text" name="username" placeholder="Username"></p>
                         <p><input type="password" name="password" placeholder="Password"></p>
-                    </form>  
+                    </form>
+                    <p id="loginError"></p>  
                 </div>
                 <div class="modal-footer">
                     <input id="loginBtn" type="submit" value="ok">
@@ -319,7 +324,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                                    <button class="close" data-dismiss="modal">×</button>
+                   <button class="close" data-dismiss="modal">×</button>
                     <h2 class="modal-title">sign up</h2>    
                 </div>
                 <div class="modal-body">
@@ -398,42 +403,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p id="userinfoName">
-                        <?php  
-                            session_start();
-                            echo $_SESSION["firstname"] . " " . $_SESSION["lastname"];
-                        ?>  
-                    </p>
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
                     <a href="#" id="logout">log out</a>
                 </div>    
                 <div class="modal-body">
                     <form id="userinfoForm" name="userinfoForm" method="post" action="send_form_email.php">
-                        First Name: <input name="firstname" id="userinfoFname" type="text" maxlength="50" size="30" 
-                        value= "<?php echo $_SESSION["firstname"] ?>" disabled><br/><br/>
-                        
-                        Last Name: <input name="lastname" id="userinfoLname" type="text" maxlength="50" size="30"
-                        value= "<?php echo $_SESSION["lastname"] ?>" disabled><br/><br/>
-                        
-                        Email: <input name="email" id="userinfoEmail" type="email" maxlength="50" size="30"
-                        value= "<?php echo $_SESSION["email"] ?>"><br/><br/>
-                        
-                        Address: <input name="address" id="userinfoAddress" type="text" maxlength="50" size="30"
-                        value= "<?php echo $_SESSION["address"] ?>"><br/><br/>
-                        
-                        Province: <input name="province" id="userinfoProvince" type="text" maxlength="50" size="6"
-                        value= "<?php echo $_SESSION["province"] ?>">
-                        
-                        Zip Code: <input name="zipcode" id="userinfoZipcode" type="text" maxlength="50" size="6"
-                        value= "<?php echo $_SESSION["zipcode"] ?>"><br/><br/>
-                        
-                        Phone: <input name="phonenumber" id="userinfoPhone" type="text" maxlength="50" size="10"
-                        value= "<?php echo $_SESSION["phonenumber"] ?>"><br/><br/>
-                        
-                        City: <input name="city" id="userinfoCity" type="text" maxlength="50" size="10"
-                        value= "<?php echo $_SESSION["city"] ?>"><br/><br/>
-                        
-                        Password: <input name="password" id="userinfoPwd" type="password" maxlength="50" size="30"
-                        value= "<?php echo $_SESSION["password"] ?>"><br/><br/>
+                        First Name: <input name="firstname" id="userinfoFname" type="text" maxlength="50" size="30" disabled><br/><br/>
+                        Last Name: <input name="lastname" id="userinfoLname" type="text" maxlength="50" size="30" disabled><br/><br/>
+                        Email: <input name="email" id="userinfoEmail" type="email" maxlength="50" size="30"><br/><br/>
+                        Address: <input name="address" id="userinfoAddress" type="text" maxlength="50" size="30"><br/><br/>
+                        Province: <input name="province" id="userinfoProvince" type="text" maxlength="50" size="6">
+                        Zip Code: <input name="zipcode" id="userinfoZipcode" type="text" maxlength="50" size="6"><br/><br/>
+                        Phone: <input name="phonenumber" id="userinfoPhone" type="text" maxlength="50" size="10"><br/><br/>
+                        City: <input name="city" id="userinfoCity" type="text" maxlength="50" size="10"><br/><br/>
+                        Password: <input name="password" id="userinfoPwd" type="password" maxlength="50" size="30"><br/><br/>
                     </form>
                     <p id="userinfoFeedback"></p>
                 </div>
@@ -443,5 +427,276 @@
             </div>
         </div>
     </div>
+<!--nutrition guide for gyros-->
+    <div id="gyros" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Gyros</a>
+                </div>    
+                <div class="modal-body">
+             <table id="gyros" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Gyros</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>593</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>11 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>873 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>1 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>44 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+<!--nutrition guide for turkey pita-->
+<div id="turkey" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Turkey Pita</a>
+                </div>    
+                <div class="modal-body">
+             <table id="turkey" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Turkey Pita</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>222</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>2 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>208 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>1 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>27 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+<!--nutrition guide for spanakopita-->
+<div id="spanakopita" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Spanakopita</a>
+                </div>    
+                <div class="modal-body">
+             <table id="spanakopita" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Spanakopita</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>228</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>14 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>556 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>2 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>18 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+<!--nutrition guide for souvlaki-->
+    <div id="souvlaki" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Souvlaki</a>
+                </div>    
+                <div class="modal-body">
+             <table id="souvlaki" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Souvlaki</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>496</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>17 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>1370 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>1 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>53 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+<!--nutrition guide for pastitsio-->
+    <div id="pastitsio" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Pastitsio</a>
+                </div>    
+                <div class="modal-body">
+             <table id="pastitsio" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Pastitsio</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>379</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>17 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>451 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>6 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>23 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+<!--nutrition guide for fish-->
+    <div id="fish" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">×</button>
+                    <p id="userinfoName"></p>
+                    <a href="#" id="logout">Nutrition Guide for Fish</a>
+                </div>    
+                <div class="modal-body">
+             <table id="fish" class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th>Fish</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>217</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fat</td>
+                            <td>9 g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>198 mg</td>
+                        </tr>
+                        <tr>
+                            <td>Sugar</td>
+                            <td>2 g</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>10 g</td>
+                        </tr>                    
+                    </table>
+
+                    <p id="userinfoFeedback"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

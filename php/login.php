@@ -1,10 +1,8 @@
 <?php
 
-    if(session_status() != PHP_SESSION_ACTIVE){
-        session_start();
-        $_SESSION['username'] = $_POST["username"];
-        $_SESSION['password'] = $_POST["password"];
-    }    
+    session_start();
+    $_SESSION['username'] = $_POST["username"];
+    $_SESSION['password'] = $_POST["password"];
     
     $username = $_SESSION['username'];
     $password = $_SESSION['password'];
@@ -44,13 +42,24 @@
             $_SESSION['username'] = $row['username'];
             $_SESSION['zipcode'] = $row['zipcode'];
             $_SESSION['userid'] = $row['userid'];                                
-
-            $data = array();
-            array_push($data, $_SESSION['firstname'] . " " . $_SESSION['lastname']);
+ 
+            $data["userfullname"] = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+            
+            $data['firstname'] = $row['firstname'];
+            $data['lastname'] = $row['lastname'];
+            $data['address'] = $row['address'];
+            $data['city'] = $row['city'];
+            $data['email'] = $row['email'];
+            $data['password'] = $row['password'];
+            $data['phonenumber'] = $row['phonenumber'];
+            $data['province'] = $row['province'];
+            $data['username'] = $row['username'];
+            $data['zipcode'] = $row['zipcode'];
+            $data['userid'] = $row['userid'];
         }
         else
         {
-            //display an error message within json object to append it on the modal
+            $data["error"] = "user not found/wrong password";
         }
     } 
     catch(PDOException $e) 
@@ -60,6 +69,5 @@
         echo "<p style='color: red;'>$error</p>";
     }
     
-
-     echo json_encode($data, JSON_FORCE_OBJECT);
+    echo json_encode($data, JSON_FORCE_OBJECT);
 ?>
