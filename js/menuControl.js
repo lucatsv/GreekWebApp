@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     
     $("#lunch").hide();
     $("#dinner").hide();
@@ -77,7 +77,32 @@ $(document).ready(function(){
         $("#nutrition").hide(); 
         $("#home").hide();
     });
-     
+    
+    
+    $("btn[id^=addCart]").click(function(){    
+        var id = $(this).attr("name");
+        
+    });
+    
+    $("#signupBtn").click(function(e){
+        e.preventDefault();
+        var formData = ConvertFormToJSON("#signupForm");
+        $.ajax({
+             url: "php/signup.php",
+             type: "POST",
+             dataType: "JSON",
+             data: formData,     //formData is sent as a JSON-object through post method to the server 
+             success: function(data) {
+                 if(typeof data['error'] == 'undefined') 
+                    $('#signup').hide(); 
+                 else
+                     $('#errorSignUp').html(data['error']).css("color","red");
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+                $("#loginError").text(jqXHR.statusText);
+             }
+         });
+    });    
 });
 
 

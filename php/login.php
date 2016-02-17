@@ -56,6 +56,7 @@
             $data['username'] = $row['username'];
             $data['zipcode'] = $row['zipcode'];
             $data['userid'] = $row['userid'];
+
         }
         else
         {

@@ -17,6 +17,7 @@ $(document).ready(function(){
                         else
                         {
                             $('#loginuser').html(data["userfullname"] + " <span class='glyphicon glyphicon-user' aria-hidden='true'></span>");
+                             
                             localStorage["firstname"] = data["firstname"];
                             localStorage["lastname"] = data["lastname"];
                             localStorage["email"] = data["email"];
@@ -26,6 +27,7 @@ $(document).ready(function(){
                             localStorage["phonenumber"] = data["phonenumber"];
                             localStorage["city"] = data["city"];
                             localStorage["password"] = data["password"];     
+                            localStorage["userId"] = data["userId"];
                             $('#userinfoName').html(localStorage["firstname"] + " " + localStorage["lastname"]);                      
                             $("#mshopping-cart").html("<a href='#'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></button></a>");
                             $('#loginuser').attr("data-target", "#userinfo");

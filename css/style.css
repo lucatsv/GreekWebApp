@@ -21,3 +21,19 @@ body {
 .left{
     text-align: left;
 }
+
+.btn-fixed {
+    width:45%
+}
+
+.ui-dialog {
+     background-color: rgba(255,255,255,1);
+}
+
+.ui-dialog-titlebar-close {
+    float:right;
+    
+    
+    
+}
+
