@@ -163,7 +163,14 @@
     <div id="shopping-cart">
       <div class="container-fluid">
           <div class="jumbotron white">
-                <h1>Shopping cart...</h1> 
+                <h1>Shopping cart</h1>
+                <table id="myShoppingCart" class="table table-striped">
+                    <tr id = "totalRow">
+                        <td colspan="2">Total</td>
+                        <td id="totalDue">$ 0.00</td>
+                    <tr>   
+                </table>
+                <button class = "btn-success" type="button" id="buy">Buy</button>
             </div>
         </div>          
     </div>

@@ -37,12 +37,13 @@
                 }   
                 echo "<div class='col-md-4 hidden-xs border'>
                         <a href='#' data-toggle='modal' data-target='#" . strtolower($row[dishName]) . "'>".
-                        "<img name='nutrition-guide' src='../$row[imgAddress]' alt='" . $row['dishName'] . "'/></a><br/>" . 
-                        "<btn name='".$row['dishId']."' id='addCart_" . $row['dishId'] ."' class='btn btn-primary glyphicon glyphicon-shopping-cart' aria-hidden='true'>".$row['dishName']."</btn>" .
+                        "<strong>" . $row['dishName'] . "</strong><br />" .
+                        "<img name='nutrition-guide' src='../$row[imgAddress]' alt='" . $row['dishName'] . "'/></a><br/>" 
+                        . "$" . $row['price'] . " <btn name='".$row['dishId']."' id='addCart_" . $row['dishId'] ."' class='btn btn-primary glyphicon glyphicon-shopping-cart' aria-hidden='true'></btn>" .
                     "</div>" .
                     "<div class='col-md-4 visible-xs border'>" . 
                          "<strong>" . $row['dishName']. "</strong>" . "<br />" . $row['description'] . "<br />" .
-                         "<btn name='".$row['dishId']."' id='addCart_" . $row['dishId'] ."' class='btn btn-primary glyphicon glyphicon-shopping-cart' aria-hidden='true'></btn>" .                               
+                        "$" . $row['price'] . " <btn name='".$row['dishId']."' id='addCart_" . $row['dishId'] ."' class='btn btn-primary glyphicon glyphicon-shopping-cart' aria-hidden='true'></btn>" .                               
                     "</div>";
 
                 if($col == 3) //closing the row
