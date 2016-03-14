@@ -150,14 +150,6 @@ $(document).ready(function() {
                 $("#errorSignUp").text(jqXHR.statusText);
              }
          });
-
-       
-        
     });
-    
-    $("#add_prod").click(function(){
-        console.log("sarah");
-    });
-
 });
 
