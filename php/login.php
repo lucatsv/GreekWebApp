@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['username'] = $_POST["username"];
     $_SESSION['password'] = $_POST["password"];
-    
+   
     $username = $_SESSION['username'];
     $password = $_SESSION['password'];
 
@@ -20,41 +20,39 @@
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT firstname, lastname, address, city, email, password, 
-        phonenumber, province, username, zipcode, userid
-        FROM USERS WHERE USERNAME = '$username' AND PASSWORD = '$password'";
+        $sql = "SELECT * FROM USERS WHERE USERNAME = '$username' AND PASSWORD = '$password'";
         $statement = $conn->prepare($sql);
-        $statement->execute(array($firstname, $lastname));
+        $statement->execute();
         $count = $statement->rowCount();
         
         if($count == 1)
         {
             $row = $statement->fetch(PDO::FETCH_ASSOC);
 
-            $_SESSION['firstname'] = $row['firstname'];
-            $_SESSION['lastname'] = $row['lastname'];
-            $_SESSION['address'] = $row['address'];
-            $_SESSION['city'] = $row['city'];
+            $_SESSION['firstname'] = $row['FirstName'];
+            $_SESSION['lastname'] = $row['LastName'];
+            $_SESSION['address'] = $row['Address'];
+            $_SESSION['city'] = $row['City'];
             $_SESSION['email'] = $row['email'];
-            $_SESSION['password'] = $row['password'];
-            $_SESSION['phonenumber'] = $row['phonenumber'];
-            $_SESSION['province'] = $row['province'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['zipcode'] = $row['zipcode'];
+            $_SESSION['password'] = $row['Password'];
+            $_SESSION['phonenumber'] = $row['phoneNumber'];
+            $_SESSION['province'] = $row['Province'];
+            $_SESSION['username'] = $row['USERNAME'];
+            $_SESSION['zipcode'] = $row['Zipcode'];
             $_SESSION['userid'] = $row['userid'];                                
- 
+  
             $data["userfullname"] = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
             
-            $data['firstname'] = $row['firstname'];
-            $data['lastname'] = $row['lastname'];
-            $data['address'] = $row['address'];
-            $data['city'] = $row['city'];
+            $data['firstname'] = $row['FirstName'];
+            $data['lastname'] = $row['LastName'];
+            $data['address'] = $row['Address'];
+            $data['city'] = $row['City'];
             $data['email'] = $row['email'];
-            $data['password'] = $row['password'];
-            $data['phonenumber'] = $row['phonenumber'];
-            $data['province'] = $row['province'];
-            $data['username'] = $row['username'];
-            $data['zipcode'] = $row['zipcode'];
+            $data['password'] = $row['Password'];
+            $data['phonenumber'] = $row['phoneNumber'];
+            $data['province'] = $row['Province'];
+            $data['username'] = $row['USERNAME'];
+            $data['zipcode'] = $row['Zipcode'];
             $data['userid'] = $row['userid'];
 
         }

@@ -98,58 +98,74 @@ $(document).ready(function() {
     });
     
     
+    
+    //adding products to shopping cart
     $("btn[id^=addCart]").click(function(){    
-        var id = $(this).attr("name");
-             
+        var id = $(this).attr("data-id");
         $.ajax({
-             url: "php/item.php",
+             url: "php/shoppingCart.php",
              type: "POST",
              dataType: "JSON",
              data: {"dishId" : id},      
              success: function(data) {
-                //data = {0:["Baklava",2,2.15],1:["Kataifi",3,2.00]}
-                
-                if(typeof window.orderList == "undefined")
-                    var orderList = [];
-                else
-                    orderList = window.orderList;
-                    
-                orderList.push([id, data["dishName"], data["price"]]);
-                 
-                window.orderList = orderList; 
-                
-                var orderListUnique = [];
-                
-                orderListUnique = orderList.unique();     
-                var amount = [0];
-                for(i =0;i<orderListUnique.length;i++)
+                if(typeof localStorage["firstname"] != "undefined")
                 {
-                    for(j =0;j<orderList.length;j++)
+                    //$('#myShoppingCart').append("<tr><td colspan=2><strong>Total</strong></td><td><strong>$ " + data["total"][0]["price"] + "</strong></td><tr>");
+                    table = '<table id="myShoppingCart" class="table table-striped">';
+                    for(row in data)
                     {
-                        if(orderListUnique[i][1] == orderList[j][1])
-                        {
-                            if(typeof amount[i] == "undefined")
-                                amount[i] = 0;
-                            amount[i]++;
-                        }
+                        //console.log(data[row]['dishName']);
+                        table += "<tr><td>" + data[row]['dishName'] + "</td>" +
+                        "<td><input data-id = '"+data[row]['dishId']+"' data-uprice='"+data[row]['uprice']+ "' class='prod_qty_cart' type='text' value ='" + data[row]['quantity'] + "'></td>" +
+                        "<td id='prod_price_cart_" +data[row]['dishId']+ "' >" + data[row]['price'] + "</td><tr>";
                     }
-                    $("#row_prod_"+id).remove();
-                    $('#totalRow').before("<tr id='row_prod_"+id+"'><td>"+ orderListUnique[i][1]+"</td><td id='total_prod_"+id+"'>" + amount[i] + "</td><td class='itemPrice'>$ "+amount[i] * orderListUnique[i][2]+
-                    " <button class='add_prod btn btn-default'>+</button><button class='rem_prod btn btn-default'>-</button>"+"</td></tr>");  //add stuff to shopping cart
+                    table = table + "<tr id='totalRow' ></tr></table>";
+                    
+                    $('#myShoppingCart').html(table);
+                    computeTotal();
+                    //$('#myShoppingCart').append("<tr><td colspan=2><strong>Total</strong></td><td><strong>$ " + data["total"][0]["price"] + "</strong></td><tr>");
+                    $('#myShoppingCart').on("change", '.prod_qty_cart', function(evt) {
+                        qty = evt.target.value;
+                        price = evt.target.dataset.uprice;
+                        id = '#prod_price_cart_' + evt.target.dataset.id;
+                        $(id).html(qty * price);
+                        
+                        computeTotal();
+                    });
                 }
-                var total = 0;
-                $('.itemPrice').each(function(index,value){total += parseFloat($(value).html().substring(2,100))})
-                $('#totalDue').html('$ ' + total);  //updates total due
-                
-                
-                // display a msg box telling that the order has been successfully added to shopping cart
-                
-
+                else
+                    console.log("User must log in to add product into shopping cart!");
              },
              error: function(jqXHR, textStatus, errorThrown) {
                 $("#errorSignUp").text(jqXHR.statusText);
              }
          });
     });
+    
+
+    //checking out shopping cart    
+    $("#buy").click(function(){
+          $.ajax({
+             url: "php/closeShoppingCart.php",
+             type: "POST",
+             dataType: "JSON",
+             data: {"msg" : "close shopping cart"},      
+             success: function(data) {
+                    console.log(data["msg"]);
+                    $('#myShoppingCart').html("<h2>" + data["cartOwner"][0]["USERNAME"]+ "<br />Your order has been processed<br />Thank you!</h2>")
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                console.log(textStatus);
+                $("#errorSignUp").text(jqXHR.statusText);
+             }
+         });
+    });
+
 });
 
+function computeTotal(){
+    total =0;
+    $('td[id^=prod_price_cart_]').each(function(){total+=parseFloat($(this).text())});
+    $('#totalRow').html("<td colspan=2><strong>Total</strong></td><td><strong>$ " + total + "</strong></td>");
+}    

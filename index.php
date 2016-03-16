@@ -63,9 +63,12 @@
         <div class="jumbotron white text-center">
             <h1>Meet our specialities</h1>
             <?php
-                require 'php/specialities.php';
-                specialities(); 
-            ?> 
+                require 'php/scripts/init.php';
+                loadScripts(); 
+                $p = new ProductManager();
+                $p->productListToHTML();
+            ?>
+         </div> 
         </div>
       </div>
     </div>
@@ -75,8 +78,8 @@
         <div class="jumbotron white text-center">
             <h1>Lunch</h1>
             <?php
-                //require 'php/specialities.php';
-                specialities('lunch');
+                $p = new ProductManager();
+                $p->productListToHTML('lunch');
             ?> 
         </div>
     </div>
@@ -87,8 +90,8 @@
         <div class="jumbotron white text-center">
             <h1>Dinner</h1>
             <?php
-                //require 'php/specialities.php';
-                specialities('dinner'); 
+                $p = new ProductManager();
+                $p->productListToHTML('dinner');
             ?> 
         </div>
     </div>
@@ -144,8 +147,7 @@
                     </div> 
                     <div class="col-lg-6">
                         <h3>connect with us on...</h3><br/><br/>
-                        <div class ="row">
-                            <div class="col-lg-4">
+                        <div class ="row">ERS
                                 <a href="#"><img src="img/logo/facebook.jpeg" alt="Facebook"></a>
                             </div>    
                             <div class="col-lg-4">
@@ -164,12 +166,7 @@
       <div class="container-fluid">
           <div class="jumbotron white">
                 <h1>Shopping cart</h1>
-                <table id="myShoppingCart" class="table table-striped">
-                    <tr id = "totalRow">
-                        <td colspan="2">Total</td>
-                        <td id="totalDue">$ 0.00</td>
-                    <tr>   
-                </table>
+                <div id="myShoppingCart"></div>
                 <button class = "btn-success" type="button" id="buy">Buy</button>
             </div>
         </div>          

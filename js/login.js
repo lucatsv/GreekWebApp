@@ -27,7 +27,7 @@ $(document).ready(function(){
                             localStorage["phonenumber"] = data["phonenumber"];
                             localStorage["city"] = data["city"];
                             localStorage["password"] = data["password"];     
-                            localStorage["userId"] = data["userId"];
+                            localStorage["userid"] = data["userid"];
                             $('#userinfoName').html(localStorage["firstname"] + " " + localStorage["lastname"]);                      
                             $("#mshopping-cart").html("<a href='#'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></button></a>");
                             $('#loginuser').attr("data-target", "#userinfo");
