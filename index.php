@@ -52,7 +52,9 @@
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </a>
                     </li>
+   
                     <li name="mshopping-cart" id="mshopping-cart"></li>
+                    <li name="madmin" id="madmin"></li>
                 </ul>
             </div>
         </div>
@@ -168,6 +170,7 @@
                 <h1>Shopping cart</h1>
                 <div id="myShoppingCart"></div>
                 <button class = "btn-success" type="button" id="buy">Buy</button>
+                <button class = "btn-info pull-right" type="button" id="continue_shopping">Continue shopping</button>
             </div>
         </div>          
     </div>
@@ -182,7 +185,7 @@
                 </div>    
                 <div class="modal-body">
                     <form id="loginForm">
-                        <p><input type="text" name="username" placeholder="Username"></p>
+                        <p><input type="text" id="loginUsername" name="username" placeholder="Username"></p>
                         <p><input type="password" name="password" placeholder="Password"></p>
                     </form>
                     <p id="loginError"></p>  
@@ -287,8 +290,8 @@
                 </div>    
                 <div class="modal-body">
                     <form id="userinfoForm" name="userinfoForm" method="post" action="send_form_email.php">
-                        First Name: <input name="firstname" id="userinfoFname" type="text" maxlength="50" size="30" disabled><br/><br/>
-                        Last Name: <input name="lastname" id="userinfoLname" type="text" maxlength="50" size="30" disabled><br/><br/>
+                        First Name: <input name="firstname" id="userinfoFname" type="text" maxlength="50" size="30" ><br/><br/>
+                        Last Name: <input name="lastname" id="userinfoLname" type="text" maxlength="50" size="30" ><br/><br/>
                         Email: <input name="email" id="userinfoEmail" type="email" maxlength="50" size="30"><br/><br/>
                         Address: <input name="address" id="userinfoAddress" type="text" maxlength="50" size="30"><br/><br/>
                         Province: <input name="province" id="userinfoProvince" type="text" maxlength="50" size="6">

@@ -5,6 +5,7 @@
                     'ProductManager.php',
                     "Messages.php",
                     "ShoppingCartManager.php",
+                    "UserManager.php",
                     'Utils.php');
 
         $subDir = "classes";

@@ -9,8 +9,7 @@ $(document).ready(function(){
              dataType: "JSON",
              data: formData,     //formData is sent as a JSON-object through post method to the server 
              success: function(data) {
-                        //the variable data is what is gotten back from the server
-                        if(typeof data["error"] !== 'undefined')
+                        if(data["status"] == "error")
                         {
                             $("#loginError").html(data["error"]).css("color","red");                               
                         }
@@ -18,18 +17,20 @@ $(document).ready(function(){
                         {
                             $('#loginuser').html(data["userfullname"] + " <span class='glyphicon glyphicon-user' aria-hidden='true'></span>");
                              
-                            localStorage["firstname"] = data["firstname"];
-                            localStorage["lastname"] = data["lastname"];
-                            localStorage["email"] = data["email"];
-                            localStorage["address"] = data["address"];
-                            localStorage["province"] = data["province"];
-                            localStorage["zipcode"] = data["zipcode"];
-                            localStorage["phonenumber"] = data["phonenumber"];
-                            localStorage["city"] = data["city"];
-                            localStorage["password"] = data["password"];     
-                            localStorage["userid"] = data["userid"];
-                            $('#userinfoName').html(localStorage["firstname"] + " " + localStorage["lastname"]);                      
-                            $("#mshopping-cart").html("<a href='#'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></button></a>");
+                            localStorage["userfullname"] = data["userfullname"];
+                            
+                            $('#userinfoName').html(data["userfullname"]);                      
+                          
+                            if(data["admin"] == 1) {
+                                $("#madmin").html("<a href='#'><span class='glyphicon glyphicon-cog' aria-hidden='true'></button></a>");
+                                $("#mshopping-cart").html("");
+                                localStorage["admin"] = 1;
+                            }
+                            else if ((data["admin"] == 0)){
+                                $("#madmin").html("");
+                                $("#mshopping-cart").html("<a href='#'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></button></a>");
+                                localStorage["admin"] = 0;
+                            }
                             $('#loginuser').attr("data-target", "#userinfo");
                             $("#loginError").html("").css("color","black");
                             $('#login').modal('hide');
@@ -41,6 +42,25 @@ $(document).ready(function(){
          });
     });
     
+    
+    if(typeof localStorage["userfullname"] != "undefined"){
+        $('#loginuser').html(localStorage["userfullname"] + " <span class='glyphicon glyphicon-user' aria-hidden='true'></span>");
+
+            if(localStorage["admin"] == 1) {
+                $("#madmin").html("<a href='#'><span class='glyphicon glyphicon-cog' aria-hidden='true'></button></a>");
+                $("#mshopping-cart").html("");
+                localStorage["admin"] = 1;
+            }
+            else if ((localStorage["admin"] == 0)){
+                $("#madmin").html("");
+                $("#mshopping-cart").html("<a href='#'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></button></a>");
+                localStorage["admin"] = 0;
+            }
+            $('#loginuser').attr("data-target", "#userinfo");
+            $("#loginError").html("").css("color","black");
+            $('#login').modal('hide');        
+    }
+        
 
     //showing user info to allow edition of certain fields(defined within HTML form) 
     $('#loginuser').click(function(e){
@@ -48,16 +68,28 @@ $(document).ready(function(){
         {
             $("#userinfoFeedback").html("");
             e.preventDefault();
-            $('#userinfoFname').val(localStorage["firstname"]);
-            $('#userinfoLname').val(localStorage["lastname"]);
-            $('#userinfoEmail').val(localStorage["email"]);
-            $('#userinfoAddress').val(localStorage["address"]);
-            $('#userinfoProvince').val(localStorage["province"]);
-            $('#userinfoZipcode').val(localStorage["zipcode"]);
-            $('#userinfoPhone').val(localStorage["phonenumber"]);
-            $('#userinfoCity').val(localStorage["city"]);
-            $('#userinfoPwd').val(localStorage["password"]);
-            $('#userinfoName').val(localStorage["firstname"] + " " +localStorage["lastname"]);    
+
+            $.ajax({
+                url: "php/userData.php",
+                type: "POST",
+                dataType: "JSON",
+                data: {},    
+                success: function(data) {
+                    $('#userinfoFname').val(data[0]["FirstName"]);
+                    $('#userinfoLname').val(data[0]["LastName"]);
+                    $('#userinfoEmail').val(data[0]["email"]);
+                    $('#userinfoAddress').val(data[0]["Address"]);
+                    $('#userinfoProvince').val(data[0]["Province"]);
+                    $('#userinfoZipcode').val(data[0]["Zipcode"]);
+                    $('#userinfoPhone').val(data[0]["phoneNumber"]);
+                    $('#userinfoCity').val(data[0]["City"]);
+                    $('#userinfoPwd').val(data[0]["Password"]);
+                    $('#userinfoName').html(localStorage["userfullname"]);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $("#loginError").text(jqXHR.statusText);
+                }
+            });
         }        
     });
 
@@ -66,8 +98,13 @@ $(document).ready(function(){
         e.preventDefault();
         $('#loginuser').html("log in <span class='glyphicon glyphicon-user' aria-hidden='true'></span>");
         $("#mshopping-cart").html("");
+        $("#madmin").html("");        
         $('#loginuser').attr("data-target", "#login");
         $('#userinfo').modal('hide');
+        
+        $("#shopping-cart").hide();
+        $("#home").show();
+        
         destroy_session();
         localStorage.clear();
     });
@@ -97,10 +134,12 @@ $(document).ready(function(){
              url: "php/signup.php",
              type: "POST",
              dataType: "JSON",
-             data: formData,     //formData is sent as a JSON-object through post method to the server 
+             data: formData,    
              success: function(data) {
-                 if(typeof data['error'] == 'undefined') 
-                    $('#signup').modal('hide'); 
+                 if(typeof data['error'] == 'undefined') {
+                    $('#signup').modal('hide');
+                    $('#loginUsername').val(formData['username']); 
+                 }
                  else
                      $('#errorSignUp').html(data['error']).css("color","red");
              },

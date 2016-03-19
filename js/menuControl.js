@@ -15,6 +15,7 @@ Array.prototype.unique = function() {
     return arr; 
 }
 
+var currentPage = "home";
 
 $(document).ready(function() {
     
@@ -35,6 +36,7 @@ $(document).ready(function() {
         $("#shopping-cart").hide();  
         $("#nutrition").hide();       
         $("#home").hide();
+        currentPage = "lunch";
     });
     
         
@@ -46,6 +48,7 @@ $(document).ready(function() {
         $("#shopping-cart").hide();
         $("#nutrition").hide();
         $("#home").hide();
+        currentPage = "dinner";
     });
     
     $("#maboutus").click(function(){
@@ -68,15 +71,6 @@ $(document).ready(function() {
         $("#home").hide();
     });   
     
-    $("#mnutrition").click(function(){
-        $("#lunch").hide();
-        $("#dinner").hide();
-        $("#aboutus").hide();
-        $("#contactus").hide(); 
-        $("#home").hide();
-        $("#nutrition").show();
-    });
-    
     $("#mhome").click(function(){
         $("#lunch").hide();
         $("#dinner").hide();
@@ -85,6 +79,7 @@ $(document).ready(function() {
         $("#shopping-cart").hide();
         $("#nutrition").hide(); 
         $("#home").show();
+        currentPage = "home";
     });
     
     $("#mshopping-cart").click(function(){
@@ -95,12 +90,34 @@ $(document).ready(function() {
         $("#shopping-cart").show();
         $("#nutrition").hide(); 
         $("#home").hide();
+        if(typeof localStorage["userfullname"] != "undefined")
+        {
+            $.ajax({
+                url: "php/loadOpenShoppingCart.php",
+                type: "POST",
+                dataType: "JSON",
+                data: {},      
+                success: function(data) {
+                    setShoppingCartTable(data);        
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $("#errorSignUp").text(jqXHR.statusText);
+                }
+            });            
+        }
     });
     
+    $("#madmin").click(function(){
+        window.location.href = "http://localhost/admin.php";    
+    });
     
     
     //adding products to shopping cart
     $("btn[id^=addCart]").click(function(){    
+        if(typeof localStorage["userfullname"] == "undefined"){
+            $('#login').modal();
+            return;
+        }
         var id = $(this).attr("data-id");
         $.ajax({
              url: "php/shoppingCart.php",
@@ -108,33 +125,7 @@ $(document).ready(function() {
              dataType: "JSON",
              data: {"dishId" : id},      
              success: function(data) {
-                if(typeof localStorage["firstname"] != "undefined")
-                {
-                    //$('#myShoppingCart').append("<tr><td colspan=2><strong>Total</strong></td><td><strong>$ " + data["total"][0]["price"] + "</strong></td><tr>");
-                    table = '<table id="myShoppingCart" class="table table-striped">';
-                    for(row in data)
-                    {
-                        //console.log(data[row]['dishName']);
-                        table += "<tr><td>" + data[row]['dishName'] + "</td>" +
-                        "<td><input data-id = '"+data[row]['dishId']+"' data-uprice='"+data[row]['uprice']+ "' class='prod_qty_cart' type='text' value ='" + data[row]['quantity'] + "'></td>" +
-                        "<td id='prod_price_cart_" +data[row]['dishId']+ "' >" + data[row]['price'] + "</td><tr>";
-                    }
-                    table = table + "<tr id='totalRow' ></tr></table>";
-                    
-                    $('#myShoppingCart').html(table);
-                    computeTotal();
-                    //$('#myShoppingCart').append("<tr><td colspan=2><strong>Total</strong></td><td><strong>$ " + data["total"][0]["price"] + "</strong></td><tr>");
-                    $('#myShoppingCart').on("change", '.prod_qty_cart', function(evt) {
-                        qty = evt.target.value;
-                        price = evt.target.dataset.uprice;
-                        id = '#prod_price_cart_' + evt.target.dataset.id;
-                        $(id).html(qty * price);
-                        
-                        computeTotal();
-                    });
-                }
-                else
-                    console.log("User must log in to add product into shopping cart!");
+                setShoppingCartTable(data);        
              },
              error: function(jqXHR, textStatus, errorThrown) {
                 $("#errorSignUp").text(jqXHR.statusText);
@@ -161,6 +152,12 @@ $(document).ready(function() {
              }
          });
     });
+    
+    
+    $('#continue_shopping').click(function(){
+        $("#shopping-cart").hide();
+        $("#"+currentPage).show();
+    });
 
 });
 
@@ -169,3 +166,28 @@ function computeTotal(){
     $('td[id^=prod_price_cart_]').each(function(){total+=parseFloat($(this).text())});
     $('#totalRow').html("<td colspan=2><strong>Total</strong></td><td><strong>$ " + total + "</strong></td>");
 }    
+
+function setShoppingCartTable(data){
+    table = '<table id="myShoppingCart" class="table table-striped">';
+    for(row in data)
+    {
+        table += "<tr><td>" + data[row]['dishName'] + "</td>" +
+        "<td><input data-id = '"+data[row]['dishId']+"' data-uprice='"+data[row]['uprice']+ "' class='prod_qty_cart' type='text' value ='" + data[row]['quantity'] + "'></td>" +
+        "<td id='prod_price_cart_" +data[row]['dishId']+ "' >" + data[row]['price'] + "</td><tr>";
+    }
+    table = table + "<tr id='totalRow' ></tr></table>";
+                    
+    $('#myShoppingCart').html(table);
+    computeTotal();
+    $('#myShoppingCart').on("change", '.prod_qty_cart', function(evt) {
+        qty = evt.target.value;
+        price = evt.target.dataset.uprice;
+        id = '#prod_price_cart_' + evt.target.dataset.id;
+        $(id).html(qty * price);
+        computeTotal();
+     });
+     $("#lunch").hide();
+     $("#dinner").hide();
+     $("#home").hide();
+     $("#shopping-cart").show();
+}

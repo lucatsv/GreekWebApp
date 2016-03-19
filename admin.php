@@ -24,11 +24,8 @@
     <div id="home">
       <div class="container-fluid">
         <div class="jumbotron white text-center">
-            <h1>Meet our specialities</h1>
-            <?php
-                require 'php/specialities.php';
-                specialities('dinner'); 
-            ?> 
+            <h1>Admin Page</h1>
+
         </div>
       </div>
     </div>
